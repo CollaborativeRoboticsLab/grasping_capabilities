@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+name: MoveToJointPoseRunner
+spec_version: 1.2
+spec_type: interface
+description: "This capability moves the manipulator to a target joint-space configuration by sending a direct MoveIt2 MoveGroup request built from joint names and target joint positions."
+interface:
+  actions:
+    "/move_action":
+      type: "moveit_msgs::action::MoveGroup"
+      description: "MoveIt2 MoveGroup action used for direct joint-space planning and execution"

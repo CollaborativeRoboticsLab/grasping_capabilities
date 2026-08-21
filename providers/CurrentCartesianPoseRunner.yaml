@@ -1,0 +1,72 @@
+%YAML 1.1
+---
+name: CurrentCartesianPoseRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for reading the current manipulator Cartesian pose from TF."
+implements: moveit2_capabilities/CurrentCartesianPoseRunner
+runner: capabilities2_runner::CurrentCartesianPoseRunner
+
+definition:
+  command: "<Runner interface=moveit2_capabilities/CurrentCartesianPoseRunner provider=moveit2_capabilities/CurrentCartesianPoseRunner from_frame='$from_frame' to_frame='$to_frame' time_buffer='$time_buffer' />"
+  configuration_parameters:
+    - name: from_frame
+      type: string
+      optional: true
+      default: "base_link"
+      semantic_key: moveit2.current_pose.from_frame
+      description: "Reference frame from which the current pose is measured."
+    - name: to_frame
+      type: string
+      optional: true
+      default: "tcp"
+      semantic_key: moveit2.current_pose.to_frame
+      description: "Manipulator link or tool frame whose pose should be resolved."
+    - name: time_buffer
+      type: double
+      optional: true
+      default: 5.0
+      semantic_key: moveit2.current_pose.timeout
+      description: "TF lookup timeout in seconds."
+  runtime_parameters:
+    output:
+      - name: x
+        type: double
+        semantic_key: moveit2.current_pose.x
+        description: "Resolved x position."
+      - name: y
+        type: double
+        semantic_key: moveit2.current_pose.y
+        description: "Resolved y position."
+      - name: z
+        type: double
+        semantic_key: moveit2.current_pose.z
+        description: "Resolved z position."
+      - name: qx
+        type: double
+        semantic_key: moveit2.current_pose.qx
+        description: "Resolved quaternion x component."
+      - name: qy
+        type: double
+        semantic_key: moveit2.current_pose.qy
+        description: "Resolved quaternion y component."
+      - name: qz
+        type: double
+        semantic_key: moveit2.current_pose.qz
+        description: "Resolved quaternion z component."
+      - name: qw
+        type: double
+        semantic_key: moveit2.current_pose.qw
+        description: "Resolved quaternion w component."
+      - name: roll
+        type: double
+        semantic_key: moveit2.current_pose.roll
+        description: "Resolved roll angle in radians."
+      - name: pitch
+        type: double
+        semantic_key: moveit2.current_pose.pitch
+        description: "Resolved pitch angle in radians."
+      - name: yaw
+        type: double
+        semantic_key: moveit2.current_pose.yaw
+        description: "Resolved yaw angle in radians."

@@ -1,0 +1,74 @@
+%YAML 1.1
+---
+name: MoveToJointPoseRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for direct MoveIt2 joint-space motion requests."
+implements: moveit2_capabilities/MoveToJointPoseRunner
+runner: capabilities2_runner::MoveToJointPoseRunner
+
+definition:
+  command: "<Runner interface=moveit2_capabilities/MoveToJointPoseRunner provider=moveit2_capabilities/MoveToJointPoseRunner joint_names_csv='$joint_names_csv' joint_positions_csv='$joint_positions_csv' planning_group='$planning_group' allowed_planning_time='$allowed_planning_time' num_planning_attempts='$num_planning_attempts' max_velocity_scaling='$max_velocity_scaling' max_acceleration_scaling='$max_acceleration_scaling' joint_goal_tolerance_rad='$joint_goal_tolerance_rad' planning_pipeline_id='$planning_pipeline_id' planner_id='$planner_id' />"
+  configuration_parameters:
+    - name: joint_names_csv
+      type: string
+      semantic_key: moveit2.joint_goal.names
+      description: "Comma-separated ordered joint names for the target joint-space motion."
+    - name: joint_positions_csv
+      type: string
+      semantic_key: moveit2.joint_goal.positions
+      description: "Comma-separated ordered joint positions in radians matching joint_names_csv."
+    - name: planning_group
+      type: string
+      optional: true
+      default: "manipulator"
+      semantic_key: moveit2.joint_goal.group
+      description: "MoveIt2 planning group used for the motion request."
+    - name: allowed_planning_time
+      type: double
+      optional: true
+      default: 5.0
+      semantic_key: moveit2.joint_goal.allowed_planning_time
+      description: "Maximum planning time in seconds for the MoveIt2 request."
+    - name: num_planning_attempts
+      type: int
+      optional: true
+      default: 5
+      semantic_key: moveit2.joint_goal.num_planning_attempts
+      description: "Maximum number of planning attempts for the MoveIt2 request."
+    - name: max_velocity_scaling
+      type: double
+      optional: true
+      default: 0.2
+      semantic_key: moveit2.joint_goal.max_velocity_scaling
+      description: "Velocity scaling factor applied to the MoveIt2 request."
+    - name: max_acceleration_scaling
+      type: double
+      optional: true
+      default: 0.2
+      semantic_key: moveit2.joint_goal.max_acceleration_scaling
+      description: "Acceleration scaling factor applied to the MoveIt2 request."
+    - name: joint_goal_tolerance_rad
+      type: double
+      optional: true
+      default: 0.001
+      semantic_key: moveit2.joint_goal.tolerance
+      description: "Symmetric tolerance in radians applied to each target joint value."
+    - name: planning_pipeline_id
+      type: string
+      optional: true
+      default: ""
+      semantic_key: moveit2.joint_goal.pipeline_id
+      description: "Optional MoveIt2 planning pipeline identifier override."
+    - name: planner_id
+      type: string
+      optional: true
+      default: ""
+      semantic_key: moveit2.joint_goal.planner_id
+      description: "Optional MoveIt2 planner identifier override."
+  runtime_parameters:
+    output:
+      - name: message
+        type: string
+        semantic_key: moveit2.joint_goal.message
+        description: "Status message describing the joint-space motion outcome."

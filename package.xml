@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>moveit2_capabilities</name>
+  <version>0.1.0</version>
+  <description>Provides capabilities2 runners for MoveIt2-based manipulator control.</description>
+
+  <maintainer email="kalanaratnayake95@gmail.com">Kalana Ratnayake</maintainer>
+  <maintainer email="kalana.ratnayakemudiyanselage@canberra.edu.au">Kalana Ratnayake</maintainer>
+
+  <author email="kalana.ratnayakemudiyanselage@canberra.edu.au">Kalana Ratnayake</author>
+  <author email="kalanaratnayake95@gmail.com">Kalana Ratnayake</author>
+  
+  <license>MIT</license>
+
+  <buildtool_depend>ament_cmake</buildtool_depend>
+
+  <depend>rclcpp</depend>
+  <depend>rclcpp_action</depend>
+  <depend>pluginlib</depend>
+  <depend>std_msgs</depend>
+  <depend>grasping_msgs</depend>
+  <depend>moveit_msgs</depend>
+  <depend>sensor_msgs</depend>
+  <depend>tf2</depend>
+  <depend>tf2_ros</depend>
+  <depend>geometry_msgs</depend>
+  <depend>capabilities2_msgs</depend>
+  <depend>capabilities2_runner</depend>
+  <depend>capabilities2_events</depend>
+
+  <test_depend>ament_lint_auto</test_depend>
+  <test_depend>ament_lint_common</test_depend>
+
+  <export>
+    <build_type>ament_cmake</build_type>
+
+    <capability_interface>
+      interfaces/MoveToCartesianPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/MoveToCartesianPoseRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/MoveToJointPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/MoveToJointPoseRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/MoveToNamedPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/MoveToNamedPoseRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/CurrentCartesianPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/CurrentCartesianPoseRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/CurrentJointPoseRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/CurrentJointPoseRunner.yaml
+    </capability_provider>
+
+  </export>
+</package>

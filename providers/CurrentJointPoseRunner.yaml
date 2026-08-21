@@ -1,0 +1,38 @@
+%YAML 1.1
+---
+name: CurrentJointPoseRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for reading the current manipulator joint positions from joint_states."
+implements: moveit2_capabilities/CurrentJointPoseRunner
+runner: capabilities2_runner::CurrentJointPoseRunner
+
+definition:
+  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner joint_names_csv='$joint_names_csv' timeout_sec='$timeout_sec' />"
+  configuration_parameters:
+    - name: joint_names_csv
+      type: string
+      optional: true
+      default: ""
+      semantic_key: moveit2.current_joints.names
+      description: "Optional comma-separated ordered joint names to read. When omitted, all joints from the latest message are returned."
+    - name: timeout_sec
+      type: double
+      optional: true
+      default: 2.0
+      semantic_key: moveit2.current_joints.timeout
+      description: "Maximum time in seconds to wait for a joint-state message."
+  runtime_parameters:
+    output:
+      - name: joint_names_csv
+        type: string
+        semantic_key: moveit2.current_joints.names
+        description: "Comma-separated ordered joint names returned from the latest joint-state sample."
+      - name: joint_positions_csv
+        type: string
+        semantic_key: moveit2.current_joints.positions
+        description: "Comma-separated ordered joint positions in radians matching joint_names_csv."
+      - name: joint_count
+        type: int
+        semantic_key: moveit2.current_joints.count
+        description: "Number of joints returned in the current joint-state sample."

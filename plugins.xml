@@ -1,0 +1,27 @@
+<library path="moveit2_capabilities">
+    <class type="capabilities2_runner::MoveToCartesianPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that moves the manipulator to a Cartesian target pose
+        </description>
+    </class>
+    <class type="capabilities2_runner::MoveToJointPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that moves the manipulator to a joint-space target pose
+        </description>
+    </class>
+    <class type="capabilities2_runner::MoveToNamedPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that moves the manipulator to a configured named pose
+        </description>
+    </class>
+    <class type="capabilities2_runner::CurrentCartesianPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that reads the current manipulator Cartesian pose from TF
+        </description>
+    </class>
+    <class type="capabilities2_runner::CurrentJointPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that reads the current manipulator joint state
+        </description>
+    </class>
+</library>

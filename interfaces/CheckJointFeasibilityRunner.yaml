@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+name: CheckJointFeasibilityRunner
+spec_version: 1.2
+spec_type: interface
+description: "This capability checks whether a joint-space target is valid or plannable for the manipulator in the current planning scene."
+interface:
+  services:
+    "/check_joint_pose_feasibility":
+      type: "grasping_msgs::srv::CheckJointPoseFeasibility"
+      description: "Manipulator joint feasibility service exposed by grasping_control"

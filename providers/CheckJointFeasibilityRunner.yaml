@@ -1,0 +1,44 @@
+%YAML 1.1
+---
+name: CheckJointFeasibilityRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for manipulator joint feasibility queries routed through grasping_control."
+implements: moveit2_capabilities/CheckJointFeasibilityRunner
+runner: capabilities2_runner::CheckJointFeasibilityRunner
+
+definition:
+  command: "<Runner interface=moveit2_capabilities/CheckJointFeasibilityRunner provider=moveit2_capabilities/CheckJointFeasibilityRunner joint_names='$joint_names' joint_positions='$joint_positions' mode='$mode' />"
+  configuration_parameters:
+    - name: joint_names
+      type: string[]
+      semantic_key: moveit2.joint_feasibility.names
+      description: "Ordered joint names for the target joint state."
+    - name: joint_positions
+      type: double[]
+      semantic_key: moveit2.joint_feasibility.positions
+      description: "Ordered joint positions in radians matching joint_names."
+    - name: mode
+      type: string
+      optional: true
+      default: "plan"
+      semantic_key: moveit2.joint_feasibility.mode
+      description: "Feasibility mode such as state_validity or plan."
+  runtime_parameters:
+    output:
+      - name: feasible
+        type: bool
+        semantic_key: moveit2.joint_feasibility.feasible
+        description: "Whether the requested joint state is feasible under the selected mode."
+      - name: failure_reason
+        type: string
+        semantic_key: moveit2.joint_feasibility.failure_reason
+        description: "Machine-readable reason for infeasibility when feasible=false."
+      - name: suggested_fallback
+        type: string
+        semantic_key: moveit2.joint_feasibility.suggested_fallback
+        description: "Recommended fallback action when feasible=false."
+      - name: message
+        type: string
+        semantic_key: moveit2.joint_feasibility.message
+        description: "Human-readable feasibility result message."

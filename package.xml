@@ -35,6 +35,22 @@
     <build_type>ament_cmake</build_type>
 
     <capability_interface>
+      interfaces/CheckCartesianFeasibilityRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/CheckCartesianFeasibilityRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/CheckJointFeasibilityRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/CheckJointFeasibilityRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
       interfaces/MoveToCartesianPoseRunner.yaml
     </capability_interface>
 

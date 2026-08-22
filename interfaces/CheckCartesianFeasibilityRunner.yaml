@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+name: CheckCartesianFeasibilityRunner
+spec_version: 1.2
+spec_type: interface
+description: "This capability checks whether a Cartesian target pose is feasible for the manipulator in the current planning scene."
+interface:
+  services:
+    "/check_cartesian_pose_feasibility":
+      type: "grasping_msgs::srv::CheckCartesianPoseFeasibility"
+      description: "Manipulator Cartesian feasibility service exposed by grasping_control"

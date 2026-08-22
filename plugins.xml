@@ -1,4 +1,14 @@
 <library path="moveit2_capabilities">
+    <class type="capabilities2_runner::CheckCartesianFeasibilityRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that checks manipulator Cartesian feasibility
+        </description>
+    </class>
+    <class type="capabilities2_runner::CheckJointFeasibilityRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that checks manipulator joint-space feasibility
+        </description>
+    </class>
     <class type="capabilities2_runner::MoveToCartesianPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that moves the manipulator to a Cartesian target pose

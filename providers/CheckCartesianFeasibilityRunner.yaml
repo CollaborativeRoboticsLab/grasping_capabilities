@@ -1,0 +1,78 @@
+%YAML 1.1
+---
+name: CheckCartesianFeasibilityRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for manipulator Cartesian feasibility queries routed through grasping_control."
+implements: moveit2_capabilities/CheckCartesianFeasibilityRunner
+runner: capabilities2_runner::CheckCartesianFeasibilityRunner
+
+definition:
+  command: "<Runner interface=moveit2_capabilities/CheckCartesianFeasibilityRunner provider=moveit2_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' mode='$mode' />"
+  configuration_parameters:
+    - name: x
+      type: double
+      semantic_key: moveit2.feasibility.target_pose.x
+      description: "Target x position in the supplied frame."
+    - name: y
+      type: double
+      semantic_key: moveit2.feasibility.target_pose.y
+      description: "Target y position in the supplied frame."
+    - name: z
+      type: double
+      semantic_key: moveit2.feasibility.target_pose.z
+      description: "Target z position in the supplied frame."
+    - name: qx
+      type: double
+      optional: true
+      default: 0.0
+      semantic_key: moveit2.feasibility.target_pose.qx
+      description: "Target orientation quaternion x component."
+    - name: qy
+      type: double
+      optional: true
+      default: 0.0
+      semantic_key: moveit2.feasibility.target_pose.qy
+      description: "Target orientation quaternion y component."
+    - name: qz
+      type: double
+      optional: true
+      default: 0.0
+      semantic_key: moveit2.feasibility.target_pose.qz
+      description: "Target orientation quaternion z component."
+    - name: qw
+      type: double
+      optional: true
+      default: 1.0
+      semantic_key: moveit2.feasibility.target_pose.qw
+      description: "Target orientation quaternion w component."
+    - name: frame_id
+      type: string
+      optional: true
+      default: "base_link"
+      semantic_key: moveit2.feasibility.target_pose.frame_id
+      description: "Frame in which the target pose is expressed."
+    - name: mode
+      type: string
+      optional: true
+      default: "arm_only_plan"
+      semantic_key: moveit2.feasibility.mode
+      description: "Feasibility mode such as arm_only_ik or arm_only_plan."
+  runtime_parameters:
+    output:
+      - name: feasible
+        type: bool
+        semantic_key: moveit2.feasibility.feasible
+        description: "Whether the target is feasible under the requested arm-only mode."
+      - name: failure_reason
+        type: string
+        semantic_key: moveit2.feasibility.failure_reason
+        description: "Machine-readable reason for infeasibility when feasible=false."
+      - name: suggested_fallback
+        type: string
+        semantic_key: moveit2.feasibility.suggested_fallback
+        description: "Recommended fallback action when feasible=false."
+      - name: message
+        type: string
+        semantic_key: moveit2.feasibility.message
+        description: "Human-readable feasibility result message."

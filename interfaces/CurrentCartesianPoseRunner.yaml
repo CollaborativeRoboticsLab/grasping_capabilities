@@ -3,4 +3,5 @@
 name: CurrentCartesianPoseRunner
 spec_version: 1.2
 spec_type: interface
-description: "This capability reads the current Cartesian pose of a manipulator link relative to a reference frame by resolving a TF transform."
+description: "This capability reads the current Cartesian pose of a manipulator 
+              link relative to a reference frame by resolving a TF transform."

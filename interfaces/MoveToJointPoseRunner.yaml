@@ -3,9 +3,12 @@
 name: MoveToJointPoseRunner
 spec_version: 1.2
 spec_type: interface
-description: "This capability moves the manipulator to a target joint-space configuration by sending a direct MoveIt2 MoveGroup request built from joint names and target joint positions."
+description: "This capability moves the manipulator to a target joint-space configuration 
+              by sending a direct MoveIt2 MoveGroup request built from joint names and 
+              target joint positions."
 interface:
   actions:
     "/move_arm_to_joint_pose":
       type: "grasping_msgs::action::MoveToJointPose"
-      description: "Grasping-stack joint-space action that executes against the grasping-owned MoveIt planning scene"
+      description: "Grasping-stack joint-space action that executes against the 
+                    grasping-owned MoveIt planning scene"

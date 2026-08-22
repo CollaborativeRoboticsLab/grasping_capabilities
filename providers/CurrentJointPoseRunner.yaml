@@ -3,31 +3,28 @@
 name: CurrentJointPoseRunner
 spec_type: provider
 spec_version: 1.2
-description: "The provider for reading the current manipulator joint positions from joint_states."
+description: "The provider for reading the current manipulator joint positions from the 
+              backend-owned planning joint-state topic."
 implements: moveit2_capabilities/CurrentJointPoseRunner
 runner: capabilities2_runner::CurrentJointPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner joint_names='$joint_names' timeout_sec='$timeout_sec' />"
+  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner timeout_sec='$timeout_sec' />"
   configuration_parameters:
-    - name: joint_names
-      type: string[]
-      optional: true
-      default: []
-      semantic_key: moveit2.current_joints.names
-      description: "Optional ordered joint names to read. When omitted, all joints from the latest message are returned."
     - name: timeout_sec
       type: double
       optional: true
       default: 2.0
       semantic_key: moveit2.current_joints.timeout
-      description: "Maximum time in seconds to wait for a joint-state message."
+      description: "Maximum time in seconds to wait for a backend-published manipulator 
+                    joint-state message."
   runtime_parameters:
     output:
       - name: joint_names
         type: string[]
         semantic_key: moveit2.current_joints.names
-        description: "Ordered joint names returned from the latest joint-state sample."
+        description: "Ordered backend-owned manipulator joint names returned from the 
+                      latest sample."
       - name: joint_positions
         type: double[]
         semantic_key: moveit2.current_joints.positions

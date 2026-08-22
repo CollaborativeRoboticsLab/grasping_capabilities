@@ -3,7 +3,8 @@
 name: MoveToNamedPoseRunner
 spec_version: 1.2
 spec_type: interface
-description: "This capability moves the manipulator to one of the named poses configured in grasping_control by sending a MoveToNamedPose action goal."
+description: "This capability moves the manipulator to one of the named poses configured 
+              in grasping_control by sending a MoveToNamedPose action goal."
 interface:
   actions:
     "/move_arm_to_named_pose":

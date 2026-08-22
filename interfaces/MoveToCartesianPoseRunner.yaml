@@ -3,7 +3,10 @@
 name: MoveToCartesianPoseRunner
 spec_version: 1.2
 spec_type: interface
-description: "This capability moves the manipulator to a target Cartesian pose by sending a grasping MoveToPose action goal. The request supplies the target position and orientation along with the frame in which that pose is expressed."
+description: "This capability moves the manipulator to a target Cartesian pose by 
+              sending a grasping MoveToPose action goal. The request supplies the 
+              target position and orientation along with the frame in which that 
+              pose is expressed."
 interface:
   actions:
     "/move_arm_to_pose":

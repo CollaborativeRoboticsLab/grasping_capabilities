@@ -89,7 +89,7 @@ protected:
     try
     {
       requested_joint_names = moveit2_detail::any_to_string_vector(
-        parameters.get_value("joint_names_csv", std::string("")));
+        parameters.get_value("joint_names", std::vector<std::string>{}));
     }
     catch (const runner_exception &)
     {
@@ -155,8 +155,8 @@ protected:
       }
     }
 
-    last_joint_names_csv_ = moveit2_detail::join_csv(output_joint_names);
-    last_joint_positions_csv_ = moveit2_detail::join_csv(output_joint_positions);
+    last_joint_names_ = output_joint_names;
+    last_joint_positions_ = output_joint_positions;
     last_joint_count_ = static_cast<int>(output_joint_names.size());
     emit_succeeded(bond_id, instance_id, param_on_success());
   }
@@ -169,8 +169,8 @@ protected:
   capabilities2_events::EventParameters param_on_success() override
   {
     capabilities2_events::EventParameters parameters;
-    parameters.set_value("joint_names_csv", last_joint_names_csv_, capabilities2_events::OptionType::STRING);
-    parameters.set_value("joint_positions_csv", last_joint_positions_csv_, capabilities2_events::OptionType::STRING);
+    parameters.set_value("joint_names", last_joint_names_, capabilities2_events::OptionType::VECTOR_STRING);
+    parameters.set_value("joint_positions", last_joint_positions_, capabilities2_events::OptionType::VECTOR_DOUBLE);
     parameters.set_value("joint_count", last_joint_count_, capabilities2_events::OptionType::INT);
     return parameters;
   }
@@ -202,8 +202,8 @@ private:
   rclcpp::Subscription<sensor_msgs::msg::JointState>::SharedPtr joint_state_subscription_;
   std::mutex joint_state_mutex_;
   sensor_msgs::msg::JointState::SharedPtr latest_joint_state_;
-  std::string last_joint_names_csv_;
-  std::string last_joint_positions_csv_;
+  std::vector<std::string> last_joint_names_;
+  std::vector<double> last_joint_positions_;
   std::string status_message_;
   int last_joint_count_{0};
 };

@@ -6,6 +6,6 @@ spec_type: interface
 description: "This capability moves the manipulator to a target joint-space configuration by sending a direct MoveIt2 MoveGroup request built from joint names and target joint positions."
 interface:
   actions:
-    "/move_action":
-      type: "moveit_msgs::action::MoveGroup"
-      description: "MoveIt2 MoveGroup action used for direct joint-space planning and execution"
+    "/move_arm_to_joint_pose":
+      type: "grasping_msgs::action::MoveToJointPose"
+      description: "Grasping-stack joint-space action that executes against the grasping-owned MoveIt planning scene"

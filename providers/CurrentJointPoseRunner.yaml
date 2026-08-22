@@ -8,14 +8,14 @@ implements: moveit2_capabilities/CurrentJointPoseRunner
 runner: capabilities2_runner::CurrentJointPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner joint_names_csv='$joint_names_csv' timeout_sec='$timeout_sec' />"
+  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner joint_names='$joint_names' timeout_sec='$timeout_sec' />"
   configuration_parameters:
-    - name: joint_names_csv
-      type: string
+    - name: joint_names
+      type: string[]
       optional: true
-      default: ""
+      default: []
       semantic_key: moveit2.current_joints.names
-      description: "Optional comma-separated ordered joint names to read. When omitted, all joints from the latest message are returned."
+      description: "Optional ordered joint names to read. When omitted, all joints from the latest message are returned."
     - name: timeout_sec
       type: double
       optional: true
@@ -24,14 +24,14 @@ definition:
       description: "Maximum time in seconds to wait for a joint-state message."
   runtime_parameters:
     output:
-      - name: joint_names_csv
-        type: string
+      - name: joint_names
+        type: string[]
         semantic_key: moveit2.current_joints.names
-        description: "Comma-separated ordered joint names returned from the latest joint-state sample."
-      - name: joint_positions_csv
-        type: string
+        description: "Ordered joint names returned from the latest joint-state sample."
+      - name: joint_positions
+        type: double[]
         semantic_key: moveit2.current_joints.positions
-        description: "Comma-separated ordered joint positions in radians matching joint_names_csv."
+        description: "Ordered joint positions in radians matching joint_names."
       - name: joint_count
         type: int
         semantic_key: moveit2.current_joints.count

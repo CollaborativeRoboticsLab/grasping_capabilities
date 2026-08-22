@@ -1,7 +1,11 @@
 #include <pluginlib/class_list_macros.hpp>
 
 #include <capabilities2_runner/runner_base.hpp>
-#include <moveit2_capabilities/moveit2_runners.hpp>
+#include <moveit2_capabilities/current_cartesian_pose_runner.hpp>
+#include <moveit2_capabilities/current_joint_pose_runner.hpp>
+#include <moveit2_capabilities/move_to_cartesian_pose_runner.hpp>
+#include <moveit2_capabilities/move_to_joint_pose_runner.hpp>
+#include <moveit2_capabilities/move_to_named_pose_runner.hpp>
 
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToCartesianPoseRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToJointPoseRunner, capabilities2_runner::RunnerBase)

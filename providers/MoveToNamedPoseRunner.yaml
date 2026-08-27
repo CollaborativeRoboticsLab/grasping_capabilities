@@ -4,19 +4,23 @@ name: MoveToNamedPoseRunner
 spec_type: provider
 spec_version: 1.2
 description: "The provider for manipulator named-pose motion requests routed through grasping_control."
-implements: moveit2_capabilities/MoveToNamedPoseRunner
+implements: grasping_capabilities/MoveToNamedPoseRunner
 runner: capabilities2_runner::MoveToNamedPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/MoveToNamedPoseRunner provider=moveit2_capabilities/MoveToNamedPoseRunner pose_name='$pose_name' />"
+  command: "<Runner interface=grasping_capabilities/MoveToNamedPoseRunner provider=grasping_capabilities/MoveToNamedPoseRunner pose_name='$pose_name' />"
   configuration_parameters:
     - name: pose_name
       type: string
-      semantic_key: moveit2.named_pose.name
+      semantic_key: grasping.named_pose.name
       description: "Configured named pose identifier accepted by the arm action server."
   runtime_parameters:
     output:
+      - name: success
+        type: bool
+        semantic_key: grasping.named_pose.success
+        description: "Whether the grasping action reported a successful execution."
       - name: message
         type: string
-        semantic_key: moveit2.named_pose.message
+        semantic_key: grasping.named_pose.message
         description: "Result message reported by the named-pose action server."

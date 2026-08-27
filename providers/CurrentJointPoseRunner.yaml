@@ -5,31 +5,35 @@ spec_type: provider
 spec_version: 1.2
 description: "The provider for reading the current manipulator joint positions from the 
               backend-owned planning joint-state topic."
-implements: moveit2_capabilities/CurrentJointPoseRunner
+implements: grasping_capabilities/CurrentJointPoseRunner
 runner: capabilities2_runner::CurrentJointPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/CurrentJointPoseRunner provider=moveit2_capabilities/CurrentJointPoseRunner timeout_sec='$timeout_sec' />"
+  command: "<Runner interface=grasping_capabilities/CurrentJointPoseRunner provider=grasping_capabilities/CurrentJointPoseRunner timeout_sec='$timeout_sec' />"
   configuration_parameters:
     - name: timeout_sec
       type: double
       optional: true
       default: 2.0
-      semantic_key: moveit2.current_joints.timeout
+      semantic_key: grasping.current_joints.timeout
       description: "Maximum time in seconds to wait for a backend-published manipulator 
                     joint-state message."
   runtime_parameters:
     output:
       - name: joint_names
         type: string[]
-        semantic_key: moveit2.current_joints.names
+        semantic_key: grasping.current_joints.names
         description: "Ordered backend-owned manipulator joint names returned from the 
                       latest sample."
       - name: joint_positions
         type: double[]
-        semantic_key: moveit2.current_joints.positions
+        semantic_key: grasping.current_joints.positions
         description: "Ordered joint positions in radians matching joint_names."
       - name: joint_count
         type: int
-        semantic_key: moveit2.current_joints.count
+        semantic_key: grasping.current_joints.count
         description: "Number of joints returned in the current joint-state sample."
+      - name: message
+        type: string
+        semantic_key: grasping.current_joints.message
+        description: "Timeout error text when no planning joint-state sample arrives."

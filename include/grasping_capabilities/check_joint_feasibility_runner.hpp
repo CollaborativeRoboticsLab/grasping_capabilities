@@ -8,7 +8,7 @@
 #include <capabilities2_events/event_parameters.hpp>
 #include <capabilities2_runner/service_runner.hpp>
 
-#include <moveit2_capabilities/moveit2_runner_utils.hpp>
+#include <grasping_capabilities/grasping_runner_utils.hpp>
 
 namespace capabilities2_runner
 {
@@ -34,9 +34,9 @@ protected:
     capabilities2_events::EventParameters & parameters) override
   {
     grasping_msgs::srv::CheckJointPoseFeasibility::Request request;
-    request.joint_names = moveit2_detail::any_to_string_vector(
+    request.joint_names = grasping_detail::any_to_string_vector(
       parameters.get_value("joint_names", std::vector<std::string>{}));
-    request.joint_positions = moveit2_detail::any_to_double_vector(
+    request.joint_positions = grasping_detail::any_to_double_vector(
       parameters.get_value("joint_positions", std::vector<double>{}));
     request.mode = std::any_cast<std::string>(parameters.get_value("mode", std::string("plan")));
     return request;

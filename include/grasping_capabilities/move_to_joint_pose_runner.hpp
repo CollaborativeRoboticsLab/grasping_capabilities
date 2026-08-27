@@ -8,7 +8,7 @@
 #include <capabilities2_events/event_parameters.hpp>
 #include <capabilities2_runner/action_runner.hpp>
 
-#include <moveit2_capabilities/moveit2_runner_utils.hpp>
+#include <grasping_capabilities/grasping_runner_utils.hpp>
 
 namespace capabilities2_runner
 {
@@ -51,9 +51,9 @@ protected:
   {
     grasping_msgs::action::MoveToJointPose::Goal goal_msg;
 
-    const auto joint_names = moveit2_detail::any_to_string_vector(
+    const auto joint_names = grasping_detail::any_to_string_vector(
       parameters.get_value("joint_names", std::vector<std::string>{}));
-    const auto joint_positions = moveit2_detail::any_to_double_vector(
+    const auto joint_positions = grasping_detail::any_to_double_vector(
       parameters.get_value("joint_positions", std::vector<double>{}));
 
     if (joint_names.empty())
@@ -90,6 +90,7 @@ protected:
    */
   void process_result(grasping_msgs::action::MoveToJointPose::Result::SharedPtr result) override
   {
+    result_success_ = result->success;
     result_message_ = result->message;
   }
 
@@ -101,6 +102,7 @@ protected:
   capabilities2_events::EventParameters param_on_success() override
   {
     capabilities2_events::EventParameters parameters;
+    parameters.set_value("success", result_success_, capabilities2_events::OptionType::BOOL);
     parameters.set_value("message", result_message_, capabilities2_events::OptionType::STRING);
     return parameters;
   }
@@ -116,6 +118,7 @@ protected:
   }
 
 private:
+  bool result_success_{false};
   std::string result_message_;
 };
 }  // namespace capabilities2_runner

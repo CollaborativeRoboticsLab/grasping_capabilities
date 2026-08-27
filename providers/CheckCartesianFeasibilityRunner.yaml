@@ -4,75 +4,131 @@ name: CheckCartesianFeasibilityRunner
 spec_type: provider
 spec_version: 1.2
 description: "The provider for manipulator Cartesian feasibility queries routed through grasping_control."
-implements: moveit2_capabilities/CheckCartesianFeasibilityRunner
+implements: grasping_capabilities/CheckCartesianFeasibilityRunner
 runner: capabilities2_runner::CheckCartesianFeasibilityRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/CheckCartesianFeasibilityRunner provider=moveit2_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' mode='$mode' />"
+  command: "<Runner interface=grasping_capabilities/CheckCartesianFeasibilityRunner provider=grasping_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' mode='$mode' />"
   configuration_parameters:
     - name: x
       type: double
-      semantic_key: moveit2.feasibility.target_pose.x
+      semantic_key: grasping.feasibility.target_pose.x
       description: "Target x position in the supplied frame."
     - name: y
       type: double
-      semantic_key: moveit2.feasibility.target_pose.y
+      semantic_key: grasping.feasibility.target_pose.y
       description: "Target y position in the supplied frame."
     - name: z
       type: double
-      semantic_key: moveit2.feasibility.target_pose.z
+      semantic_key: grasping.feasibility.target_pose.z
       description: "Target z position in the supplied frame."
     - name: qx
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.feasibility.target_pose.qx
+      semantic_key: grasping.feasibility.target_pose.qx
       description: "Target orientation quaternion x component."
     - name: qy
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.feasibility.target_pose.qy
+      semantic_key: grasping.feasibility.target_pose.qy
       description: "Target orientation quaternion y component."
     - name: qz
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.feasibility.target_pose.qz
+      semantic_key: grasping.feasibility.target_pose.qz
       description: "Target orientation quaternion z component."
     - name: qw
       type: double
       optional: true
       default: 1.0
-      semantic_key: moveit2.feasibility.target_pose.qw
+      semantic_key: grasping.feasibility.target_pose.qw
       description: "Target orientation quaternion w component."
     - name: frame_id
       type: string
       optional: true
       default: "base_link"
-      semantic_key: moveit2.feasibility.target_pose.frame_id
+      semantic_key: grasping.feasibility.target_pose.frame_id
       description: "Frame in which the target pose is expressed."
     - name: mode
       type: string
       optional: true
       default: "arm_only_plan"
-      semantic_key: moveit2.feasibility.mode
+      semantic_key: grasping.feasibility.mode
       description: "Feasibility mode such as arm_only_ik or arm_only_plan."
   runtime_parameters:
     output:
       - name: feasible
         type: bool
-        semantic_key: moveit2.feasibility.feasible
+        semantic_key: grasping.feasibility.feasible
         description: "Whether the target is feasible under the requested arm-only mode."
+      - name: mode_used
+        type: string
+        semantic_key: grasping.feasibility.mode_used
+        description: "Feasibility mode actually used by the grasping backend."
       - name: failure_reason
         type: string
-        semantic_key: moveit2.feasibility.failure_reason
+        semantic_key: grasping.feasibility.failure_reason
         description: "Machine-readable reason for infeasibility when feasible=false."
       - name: suggested_fallback
         type: string
-        semantic_key: moveit2.feasibility.suggested_fallback
+        semantic_key: grasping.feasibility.suggested_fallback
         description: "Recommended fallback action when feasible=false."
       - name: message
         type: string
-        semantic_key: moveit2.feasibility.message
+        semantic_key: grasping.feasibility.message
         description: "Human-readable feasibility result message."
+      - name: planning_frame
+        type: string
+        semantic_key: grasping.feasibility.planning_frame
+        description: "Planning frame used by the backend evaluation."
+      - name: planning_pose_valid
+        type: bool
+        semantic_key: grasping.feasibility.planning_pose_valid
+        description: "Whether the returned planning pose is valid."
+      - name: planning_x
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.x
+        description: "Normalized planning pose x position."
+      - name: planning_y
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.y
+        description: "Normalized planning pose y position."
+      - name: planning_z
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.z
+        description: "Normalized planning pose z position."
+      - name: planning_qx
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.qx
+        description: "Normalized planning pose quaternion x component."
+      - name: planning_qy
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.qy
+        description: "Normalized planning pose quaternion y component."
+      - name: planning_qz
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.qz
+        description: "Normalized planning pose quaternion z component."
+      - name: planning_qw
+        type: double
+        semantic_key: grasping.feasibility.planning_pose.qw
+        description: "Normalized planning pose quaternion w component."
+      - name: joint_solution_valid
+        type: bool
+        semantic_key: grasping.feasibility.joint_solution_valid
+        description: "Whether the backend produced a joint-space solution for the pose."
+      - name: joint_names
+        type: string[]
+        semantic_key: grasping.feasibility.joint_solution.names
+        description: "Joint names for the returned joint-space solution."
+      - name: joint_positions
+        type: double[]
+        semantic_key: grasping.feasibility.joint_solution.positions
+        description: "Joint positions for the returned joint-space solution."
+      - name: collision_contacts
+        type: string[]
+        semantic_key: grasping.feasibility.collision_contacts
+        description: "Collision contact identifiers reported by the backend when available."

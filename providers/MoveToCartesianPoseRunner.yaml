@@ -4,57 +4,61 @@ name: MoveToCartesianPoseRunner
 spec_type: provider
 spec_version: 1.2
 description: "The provider for manipulator Cartesian motion requests routed through grasping_control."
-implements: moveit2_capabilities/MoveToCartesianPoseRunner
+implements: grasping_capabilities/MoveToCartesianPoseRunner
 runner: capabilities2_runner::MoveToCartesianPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/MoveToCartesianPoseRunner provider=moveit2_capabilities/MoveToCartesianPoseRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' />"
+  command: "<Runner interface=grasping_capabilities/MoveToCartesianPoseRunner provider=grasping_capabilities/MoveToCartesianPoseRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' />"
   configuration_parameters:
     - name: x
       type: double
-      semantic_key: moveit2.target_pose.x
+      semantic_key: grasping.target_pose.x
       description: "Target x position in the supplied frame."
     - name: y
       type: double
-      semantic_key: moveit2.target_pose.y
+      semantic_key: grasping.target_pose.y
       description: "Target y position in the supplied frame."
     - name: z
       type: double
-      semantic_key: moveit2.target_pose.z
+      semantic_key: grasping.target_pose.z
       description: "Target z position in the supplied frame."
     - name: qx
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.target_pose.qx
+      semantic_key: grasping.target_pose.qx
       description: "Target orientation quaternion x component."
     - name: qy
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.target_pose.qy
+      semantic_key: grasping.target_pose.qy
       description: "Target orientation quaternion y component."
     - name: qz
       type: double
       optional: true
       default: 0.0
-      semantic_key: moveit2.target_pose.qz
+      semantic_key: grasping.target_pose.qz
       description: "Target orientation quaternion z component."
     - name: qw
       type: double
       optional: true
       default: 1.0
-      semantic_key: moveit2.target_pose.qw
+      semantic_key: grasping.target_pose.qw
       description: "Target orientation quaternion w component."
     - name: frame_id
       type: string
       optional: true
       default: "base_link"
-      semantic_key: moveit2.target_pose.frame_id
+      semantic_key: grasping.target_pose.frame_id
       description: "Frame in which the target pose is expressed."
   runtime_parameters:
     output:
+      - name: success
+        type: bool
+        semantic_key: grasping.target_pose.success
+        description: "Whether the grasping action reported a successful execution."
       - name: message
         type: string
-        semantic_key: moveit2.target_pose.message
+        semantic_key: grasping.target_pose.message
         description: "Result message reported by the arm action server."

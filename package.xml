@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>moveit2_capabilities</name>
+  <name>grasping_capabilities</name>
   <version>0.1.0</version>
-  <description>Provides capabilities2 runners for MoveIt2-based manipulator control.</description>
+  <description>Provides capabilities2 runners for grasping-stack manipulator control.</description>
 
   <maintainer email="kalanaratnayake95@gmail.com">Kalana Ratnayake</maintainer>
   <maintainer email="kalana.ratnayakemudiyanselage@canberra.edu.au">Kalana Ratnayake</maintainer>

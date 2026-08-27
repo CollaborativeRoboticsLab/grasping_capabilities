@@ -2,8 +2,8 @@
 <Plan>
     <Control type="sequential" name="single_joint_move">
         <Runner
-            interface="moveit2_capabilities/MoveToJointPoseRunner"
-            provider="moveit2_capabilities/MoveToJointPoseRunner"
+            interface="grasping_capabilities/MoveToJointPoseRunner"
+            provider="grasping_capabilities/MoveToJointPoseRunner"
             joint_names="[shoulder_pan_joint, shoulder_lift_joint, elbow_joint, wrist_1_joint, wrist_2_joint, wrist_3_joint]"
             joint_positions="[0.0, -1.57, 1.57, -1.57, -1.57, 0.0]" />
     </Control>

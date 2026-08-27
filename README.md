@@ -1,4 +1,4 @@
-# moveit2_capabilities
+# grasping_capabilities
 
 Provides capabilities2 runners for manipulator motion and state queries. The package uses the grasping stack as the control boundary for Cartesian, named-pose, and joint-space execution, and reads state directly from TF and joint-state topics.
 
@@ -10,7 +10,7 @@ Provides capabilities2 runners for manipulator motion and state queries. The pac
 | `MoveToJointPoseRunner` | Sends a joint-space target through `grasping_msgs/action/MoveToJointPose`. |
 | `MoveToNamedPoseRunner` | Sends a configured named pose through `grasping_msgs/action/MoveToNamedPose`. |
 | `CurrentCartesianPoseRunner` | Reads the current link pose from TF and emits Cartesian and RPY values. |
-| `CurrentJointPoseRunner` | Reads the current manipulator joint state and emits `joint_names` plus `joint_positions` vectors. |
+| `CurrentJointPoseRunner` | Reads the grasping-owned `/manipulator_joint_states` stream and emits `joint_names` plus `joint_positions` vectors. |
 
 ## Planning Boundary
 
@@ -33,7 +33,7 @@ Because of that, `MoveToJointPoseRunner` now sends only the target joint state. 
 
 ```bash
 cd ~/colcon_ws
-colcon build --packages-up-to grasping_msgs grasping_control moveit2_capabilities --symlink-install
+colcon build --packages-up-to grasping_msgs grasping_control grasping_capabilities --symlink-install
 ```
 
 ## Runtime

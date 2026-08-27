@@ -2,20 +2,20 @@
 <Plan>
     <Control type="sequential" name="four_named_pose_moves">
         <Runner
-            interface="moveit2_capabilities/MoveToNamedPoseRunner"
-            provider="moveit2_capabilities/MoveToNamedPoseRunner"
+            interface="grasping_capabilities/MoveToNamedPoseRunner"
+            provider="grasping_capabilities/MoveToNamedPoseRunner"
             pose_name="workspace_center" />
         <Runner
-            interface="moveit2_capabilities/MoveToNamedPoseRunner"
-            provider="moveit2_capabilities/MoveToNamedPoseRunner"
+            interface="grasping_capabilities/MoveToNamedPoseRunner"
+            provider="grasping_capabilities/MoveToNamedPoseRunner"
             pose_name="pre_grasp" />
         <Runner
-            interface="moveit2_capabilities/MoveToNamedPoseRunner"
-            provider="moveit2_capabilities/MoveToNamedPoseRunner"
+            interface="grasping_capabilities/MoveToNamedPoseRunner"
+            provider="grasping_capabilities/MoveToNamedPoseRunner"
             pose_name="post_grasp" />
         <Runner
-            interface="moveit2_capabilities/MoveToNamedPoseRunner"
-            provider="moveit2_capabilities/MoveToNamedPoseRunner"
+            interface="grasping_capabilities/MoveToNamedPoseRunner"
+            provider="grasping_capabilities/MoveToNamedPoseRunner"
             pose_name="workspace_center" />
     </Control>
 </Plan>

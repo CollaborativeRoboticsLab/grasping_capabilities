@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(moveit2_capabilities)
+project(grasping_capabilities)
 
 # Default to C++17
 if(NOT CMAKE_CXX_STANDARD)
@@ -29,7 +29,7 @@ include_directories(
 )
 
 add_library(${PROJECT_NAME} SHARED
-  src/moveit2_runners.cpp
+  src/grasping_runners.cpp
 )
 
 ament_target_dependencies(${PROJECT_NAME}

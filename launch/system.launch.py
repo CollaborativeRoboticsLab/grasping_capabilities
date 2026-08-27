@@ -19,7 +19,7 @@ def generate_launch_description():
     )
 
     # plan file folder
-    plan_file_path = PathJoinSubstitution([FindPackageShare('moveit2_capabilities'), 'plans', plan_file_name ])
+    plan_file_path = PathJoinSubstitution([FindPackageShare('grasping_capabilities'), 'plans', plan_file_name ])
 
     # load config file
     fabric_config = PathJoinSubstitution([FindPackageShare('fabric_server'), 'config', 'fabric.yaml'])

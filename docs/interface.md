@@ -1,6 +1,6 @@
 # Interface Information
 
-The MoveIt2 capabilities package provides manipulator motion and state interfaces. Motion execution is delegated to the grasping stack, which owns workspace loading, planning-scene setup, and MoveIt planning configuration. State readers publish their results directly as event parameters.
+The grasping capabilities package provides manipulator motion and state interfaces. Motion execution is delegated to the grasping stack, which owns workspace loading, planning-scene setup, and MoveIt planning configuration. State readers publish their results directly as event parameters.
 
 ## MoveToCartesianPoseRunner
 
@@ -23,6 +23,7 @@ Output Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
+| success | bool | Whether the grasping action reported a successful execution. |
 | message | string | Final status returned by the grasping motion server. |
 
 ## MoveToJointPoseRunner
@@ -40,6 +41,7 @@ Output Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
+| success | bool | Whether the grasping action reported a successful execution. |
 | message | string | Final status returned by the grasping motion server. |
 
 ## MoveToNamedPoseRunner
@@ -56,6 +58,7 @@ Output Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
+| success | bool | Whether the grasping action reported a successful execution. |
 | message | string | Final status returned by the grasping motion server. |
 
 ## CurrentCartesianPoseRunner
@@ -66,9 +69,9 @@ Input Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
-| parent_frame | string | TF parent frame. Defaults to `base_link`. |
-| child_frame | string | TF child frame to query. Defaults to `tool0`. |
-| timeout_sec | double | TF lookup timeout in seconds. |
+| from_frame | string | TF parent frame. Defaults to `base_link`. |
+| to_frame | string | TF child frame to query. Defaults to `tcp`. |
+| time_buffer | double | TF lookup timeout in seconds. |
 
 Output Parameters:
 
@@ -84,16 +87,17 @@ Output Parameters:
 | roll | double | Current roll angle in radians. |
 | pitch | double | Current pitch angle in radians. |
 | yaw | double | Current yaw angle in radians. |
+| message | string | TF lookup error text when the transform cannot be resolved. |
 
 ## CurrentJointPoseRunner
 
-This runner reads the current manipulator joint state from `/joint_states` and emits vectors directly.
+This runner reads the current manipulator joint state from `/manipulator_joint_states` and emits vectors directly.
 
 Input Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
-| joint_names | string[] | Optional ordered filter of joints to return. When omitted, all available planning joints are emitted. |
+| timeout_sec | double | Maximum time in seconds to wait for the next planning joint-state sample. |
 
 Output Parameters:
 
@@ -102,3 +106,4 @@ Output Parameters:
 | joint_names | string[] | Ordered joint names returned by the state reader. |
 | joint_positions | double[] | Ordered joint positions in radians matching `joint_names`. |
 | joint_count | int | Number of emitted joints. |
+| message | string | Timeout error text when no planning joint-state sample arrives. |

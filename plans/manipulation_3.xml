@@ -2,8 +2,8 @@
 <Plan>
     <Control type="sequential" name="single_named_pose_move">
         <Runner
-            interface="moveit2_capabilities/MoveToNamedPoseRunner"
-            provider="moveit2_capabilities/MoveToNamedPoseRunner"
+            interface="grasping_capabilities/MoveToNamedPoseRunner"
+            provider="grasping_capabilities/MoveToNamedPoseRunner"
             pose_name="workspace_center" />
     </Control>
 </Plan>

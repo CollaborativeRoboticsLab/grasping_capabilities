@@ -13,7 +13,7 @@
 
 namespace capabilities2_runner
 {
-namespace moveit2_detail
+namespace grasping_detail
 {
 /**
  * @brief Convert a vector-valued parameter into a string list.
@@ -158,5 +158,5 @@ inline moveit_msgs::msg::Constraints build_joint_constraints(
   }
   return constraints;
 }
-}  // namespace moveit2_detail
+}  // namespace grasping_detail
 }  // namespace capabilities2_runner

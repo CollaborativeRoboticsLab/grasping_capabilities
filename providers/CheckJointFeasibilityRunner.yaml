@@ -4,41 +4,65 @@ name: CheckJointFeasibilityRunner
 spec_type: provider
 spec_version: 1.2
 description: "The provider for manipulator joint feasibility queries routed through grasping_control."
-implements: moveit2_capabilities/CheckJointFeasibilityRunner
+implements: grasping_capabilities/CheckJointFeasibilityRunner
 runner: capabilities2_runner::CheckJointFeasibilityRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/CheckJointFeasibilityRunner provider=moveit2_capabilities/CheckJointFeasibilityRunner joint_names='$joint_names' joint_positions='$joint_positions' mode='$mode' />"
+  command: "<Runner interface=grasping_capabilities/CheckJointFeasibilityRunner provider=grasping_capabilities/CheckJointFeasibilityRunner joint_names='$joint_names' joint_positions='$joint_positions' mode='$mode' />"
   configuration_parameters:
     - name: joint_names
       type: string[]
-      semantic_key: moveit2.joint_feasibility.names
+      semantic_key: grasping.joint_feasibility.names
       description: "Ordered joint names for the target joint state."
     - name: joint_positions
       type: double[]
-      semantic_key: moveit2.joint_feasibility.positions
+      semantic_key: grasping.joint_feasibility.positions
       description: "Ordered joint positions in radians matching joint_names."
     - name: mode
       type: string
       optional: true
       default: "plan"
-      semantic_key: moveit2.joint_feasibility.mode
+      semantic_key: grasping.joint_feasibility.mode
       description: "Feasibility mode such as state_validity or plan."
   runtime_parameters:
     output:
       - name: feasible
         type: bool
-        semantic_key: moveit2.joint_feasibility.feasible
+        semantic_key: grasping.joint_feasibility.feasible
         description: "Whether the requested joint state is feasible under the selected mode."
+      - name: mode_used
+        type: string
+        semantic_key: grasping.joint_feasibility.mode_used
+        description: "Feasibility mode actually used by the grasping backend."
       - name: failure_reason
         type: string
-        semantic_key: moveit2.joint_feasibility.failure_reason
+        semantic_key: grasping.joint_feasibility.failure_reason
         description: "Machine-readable reason for infeasibility when feasible=false."
       - name: suggested_fallback
         type: string
-        semantic_key: moveit2.joint_feasibility.suggested_fallback
+        semantic_key: grasping.joint_feasibility.suggested_fallback
         description: "Recommended fallback action when feasible=false."
       - name: message
         type: string
-        semantic_key: moveit2.joint_feasibility.message
+        semantic_key: grasping.joint_feasibility.message
         description: "Human-readable feasibility result message."
+      - name: planning_frame
+        type: string
+        semantic_key: grasping.joint_feasibility.planning_frame
+        description: "Planning frame used by the backend evaluation."
+      - name: checked_joint_state_valid
+        type: bool
+        semantic_key: grasping.joint_feasibility.checked_joint_state_valid
+        description: "Whether the returned checked joint state is valid."
+      - name: joint_names
+        type: string[]
+        semantic_key: grasping.joint_feasibility.checked_joint_state.names
+        description: "Joint names from the checked joint state."
+      - name: joint_positions
+        type: double[]
+        semantic_key: grasping.joint_feasibility.checked_joint_state.positions
+        description: "Joint positions from the checked joint state."
+      - name: collision_contacts
+        type: string[]
+        semantic_key: grasping.joint_feasibility.collision_contacts
+        description: "Collision contact identifiers reported by the backend when available."

@@ -68,6 +68,7 @@ protected:
    */
   void process_result(grasping_msgs::action::MoveToNamedPose::Result::SharedPtr result) override
   {
+    result_success_ = result->success;
     result_message_ = result->message;
   }
 
@@ -79,6 +80,7 @@ protected:
   capabilities2_events::EventParameters param_on_success() override
   {
     capabilities2_events::EventParameters parameters;
+    parameters.set_value("success", result_success_, capabilities2_events::OptionType::BOOL);
     parameters.set_value("message", result_message_, capabilities2_events::OptionType::STRING);
     return parameters;
   }
@@ -94,6 +96,7 @@ protected:
   }
 
 private:
+  bool result_success_{false};
   std::string result_message_;
 };
 }  // namespace capabilities2_runner

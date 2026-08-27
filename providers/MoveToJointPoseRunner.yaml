@@ -4,23 +4,27 @@ name: MoveToJointPoseRunner
 spec_type: provider
 spec_version: 1.2
 description: "The provider for grasping-stack joint-space motion requests."
-implements: moveit2_capabilities/MoveToJointPoseRunner
+implements: grasping_capabilities/MoveToJointPoseRunner
 runner: capabilities2_runner::MoveToJointPoseRunner
 
 definition:
-  command: "<Runner interface=moveit2_capabilities/MoveToJointPoseRunner provider=moveit2_capabilities/MoveToJointPoseRunner joint_names='$joint_names' joint_positions='$joint_positions' />"
+  command: "<Runner interface=grasping_capabilities/MoveToJointPoseRunner provider=grasping_capabilities/MoveToJointPoseRunner joint_names='$joint_names' joint_positions='$joint_positions' />"
   configuration_parameters:
     - name: joint_names
       type: string[]
-      semantic_key: moveit2.joint_goal.names
+      semantic_key: grasping.joint_goal.names
       description: "Ordered joint names for the target joint-space motion."
     - name: joint_positions
       type: double[]
-      semantic_key: moveit2.joint_goal.positions
+      semantic_key: grasping.joint_goal.positions
       description: "Ordered joint positions in radians matching joint_names."
   runtime_parameters:
     output:
+      - name: success
+        type: bool
+        semantic_key: grasping.joint_goal.success
+        description: "Whether the grasping action reported a successful execution."
       - name: message
         type: string
-        semantic_key: moveit2.joint_goal.message
+        semantic_key: grasping.joint_goal.message
         description: "Status message describing the joint-space motion outcome."

@@ -1,4 +1,4 @@
-<library path="moveit2_capabilities">
+<library path="grasping_capabilities">
     <class type="capabilities2_runner::CheckCartesianFeasibilityRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that checks manipulator Cartesian feasibility

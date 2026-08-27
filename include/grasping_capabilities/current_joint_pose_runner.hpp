@@ -11,8 +11,6 @@
 #include <capabilities2_events/event_parameters.hpp>
 #include <capabilities2_runner/threadtrigger_runner.hpp>
 
-#include <moveit2_capabilities/moveit2_runner_utils.hpp>
-
 namespace capabilities2_runner
 {
 /**
@@ -40,14 +38,7 @@ public:
   {
     init_base(node, run_config);
 
-    std::string topic_name = "/joint_states";
-    try
-    {
-      topic_name = get_topic_name_by_type("sensor_msgs::msg::JointState");
-    }
-    catch (const runner_exception &)
-    {
-    }
+    const std::string topic_name = "/manipulator_joint_states";
 
     joint_state_subscription_ = node_->create_subscription<sensor_msgs::msg::JointState>(
       topic_name,

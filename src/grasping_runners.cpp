@@ -1,13 +1,13 @@
 #include <pluginlib/class_list_macros.hpp>
 
 #include <capabilities2_runner/runner_base.hpp>
-#include <moveit2_capabilities/check_cartesian_feasibility_runner.hpp>
-#include <moveit2_capabilities/check_joint_feasibility_runner.hpp>
-#include <moveit2_capabilities/current_cartesian_pose_runner.hpp>
-#include <moveit2_capabilities/current_joint_pose_runner.hpp>
-#include <moveit2_capabilities/move_to_cartesian_pose_runner.hpp>
-#include <moveit2_capabilities/move_to_joint_pose_runner.hpp>
-#include <moveit2_capabilities/move_to_named_pose_runner.hpp>
+#include <grasping_capabilities/check_cartesian_feasibility_runner.hpp>
+#include <grasping_capabilities/check_joint_feasibility_runner.hpp>
+#include <grasping_capabilities/current_cartesian_pose_runner.hpp>
+#include <grasping_capabilities/current_joint_pose_runner.hpp>
+#include <grasping_capabilities/move_to_cartesian_pose_runner.hpp>
+#include <grasping_capabilities/move_to_joint_pose_runner.hpp>
+#include <grasping_capabilities/move_to_named_pose_runner.hpp>
 
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckCartesianFeasibilityRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckJointFeasibilityRunner, capabilities2_runner::RunnerBase)

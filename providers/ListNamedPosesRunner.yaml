@@ -1,0 +1,25 @@
+%YAML 1.1
+---
+name: ListNamedPosesRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for querying configured manipulator named poses and descriptions from grasping_control."
+implements: grasping_capabilities/ListNamedPosesRunner
+runner: capabilities2_runner::ListNamedPosesRunner
+
+definition:
+  command: "<Runner interface=grasping_capabilities/ListNamedPosesRunner provider=grasping_capabilities/ListNamedPosesRunner />"
+  runtime_parameters:
+    output:
+      - name: pose_names
+        type: string[]
+        semantic_key: grasping.named_poses.names
+        description: "Ordered configured named-pose identifiers returned by the grasping backend."
+      - name: descriptions
+        type: string[]
+        semantic_key: grasping.named_poses.descriptions
+        description: "Ordered descriptions matching pose_names."
+      - name: pose_count
+        type: int
+        semantic_key: grasping.named_poses.count
+        description: "Number of configured named poses returned by the grasping backend."

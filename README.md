@@ -9,6 +9,7 @@ Provides capabilities2 runners for manipulator motion and state queries. The pac
 | `MoveToCartesianPoseRunner` | Sends a Cartesian target through `grasping_msgs/action/MoveToPose`. |
 | `MoveToJointPoseRunner` | Sends a joint-space target through `grasping_msgs/action/MoveToJointPose`. |
 | `MoveToNamedPoseRunner` | Sends a configured named pose through `grasping_msgs/action/MoveToNamedPose`. |
+| `ListNamedPosesRunner` | Lists configured named poses and their descriptions through `grasping_msgs/srv/ListNamedPoses`. |
 | `CurrentCartesianPoseRunner` | Reads the current link pose from TF and emits Cartesian and RPY values. |
 | `CurrentJointPoseRunner` | Reads the grasping-owned `/manipulator_joint_states` stream and emits `joint_names` plus `joint_positions` vectors. |
 
@@ -21,6 +22,8 @@ Motion execution is delegated to `grasping_control/motion_execution_node`, which
 - TF normalization and nearby-IK behavior for pose requests
 
 Because of that, `MoveToJointPoseRunner` now sends only the target joint state. Planning configuration is loaded on the grasping side rather than per capability trigger.
+
+Named-pose discovery is also delegated to `grasping_control/motion_execution_node`, which reads the configured `poses_names` and each pose's `description` field from `motion_config.yaml`.
 
 ## Example Plans
 

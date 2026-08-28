@@ -61,6 +61,22 @@ Output Parameters:
 | success | bool | Whether the grasping action reported a successful execution. |
 | message | string | Final status returned by the grasping motion server. |
 
+## ListNamedPosesRunner
+
+This runner calls `grasping_msgs/srv/ListNamedPoses` and emits the configured pose names with their descriptions.
+
+Input Parameters:
+
+None
+
+Output Parameters:
+
+| Parameter Name | Type | Description |
+| --- | --- | --- |
+| pose_names | string[] | Ordered configured named-pose identifiers. |
+| descriptions | string[] | Ordered descriptions matching `pose_names`. |
+| pose_count | int | Number of configured named poses. |
+
 ## CurrentCartesianPoseRunner
 
 This runner reads the current transform between a configured parent and child frame and emits Cartesian plus roll-pitch-yaw values.

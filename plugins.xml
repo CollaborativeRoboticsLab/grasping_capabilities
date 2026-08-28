@@ -24,6 +24,11 @@
             A plugin that moves the manipulator to a configured named pose
         </description>
     </class>
+    <class type="capabilities2_runner::ListNamedPosesRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that lists the configured manipulator named poses and descriptions
+        </description>
+    </class>
     <class type="capabilities2_runner::CurrentCartesianPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that reads the current manipulator Cartesian pose from TF

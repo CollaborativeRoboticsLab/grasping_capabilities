@@ -75,6 +75,14 @@
     </capability_provider>
 
     <capability_interface>
+      interfaces/ListNamedPosesRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/ListNamedPosesRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
       interfaces/CurrentCartesianPoseRunner.yaml
     </capability_interface>
 

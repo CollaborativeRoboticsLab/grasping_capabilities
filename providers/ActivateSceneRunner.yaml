@@ -1,0 +1,84 @@
+%YAML 1.1
+---
+name: ActivateSceneRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for activating an explicit grasping workspace scene reference."
+implements: grasping_capabilities/ActivateSceneRunner
+runner: capabilities2_runner::ActivateSceneRunner
+
+definition:
+  command: "<Runner interface=grasping_capabilities/ActivateSceneRunner provider=grasping_capabilities/ActivateSceneRunner scene_name='$scene_name' package_name='$package_name' workspace_file='$workspace_file' scene_revision='$scene_revision' force_reload='$force_reload' />"
+  configuration_parameters:
+    - name: scene_name
+      type: string
+      optional: true
+      default: ""
+      semantic_key: grasping.scene.reference.scene_name
+      description: "Optional scene registry name to attach to the activated workspace reference."
+    - name: package_name
+      type: string
+      semantic_key: grasping.scene.reference.package_name
+      description: "ROS package that owns the workspace document to activate."
+    - name: workspace_file
+      type: string
+      semantic_key: grasping.scene.reference.workspace_file
+      description: "Package-relative workspace document path to activate."
+    - name: scene_revision
+      type: string
+      optional: true
+      default: ""
+      semantic_key: grasping.scene.reference.scene_revision
+      description: "Optional source revision or content hash for the requested workspace."
+    - name: force_reload
+      type: bool
+      optional: true
+      default: false
+      semantic_key: grasping.scene.force_reload
+      description: "Reapply the scene even when the same scene reference is already active."
+  runtime_parameters:
+    output:
+      - name: success
+        type: bool
+        semantic_key: grasping.scene.activation.success
+        description: "Whether the scene activation action completed successfully."
+      - name: failure_reason
+        type: string
+        semantic_key: grasping.scene.activation.failure_reason
+        description: "Structured activation failure reason from the scene manager."
+      - name: message
+        type: string
+        semantic_key: grasping.scene.activation.message
+        description: "Human-readable activation status returned by the scene manager."
+      - name: active_scene_name
+        type: string
+        semantic_key: grasping.active_scene.name
+        description: "Scene registry name reported for the active scene."
+      - name: active_scene_package_name
+        type: string
+        semantic_key: grasping.active_scene.package_name
+        description: "Package name of the active workspace scene source."
+      - name: active_scene_workspace_file
+        type: string
+        semantic_key: grasping.active_scene.workspace_file
+        description: "Workspace document path of the active scene source."
+      - name: active_scene_revision
+        type: string
+        semantic_key: grasping.active_scene.scene_revision
+        description: "Scene revision reported for the active scene source."
+      - name: scene_handle
+        type: string
+        semantic_key: grasping.active_scene.handle
+        description: "Runtime scene handle returned by the scene manager."
+      - name: workspace_base_frame
+        type: string
+        semantic_key: grasping.active_scene.base_frame
+        description: "Base frame used by the activated workspace scene."
+      - name: workspace_area_enabled
+        type: bool
+        semantic_key: grasping.active_scene.workspace_area_enabled
+        description: "Whether workspace-area filtering is enabled for the active scene."
+      - name: object_names
+        type: string[]
+        semantic_key: grasping.active_scene.object_names
+        description: "Collision object names loaded for the active scene."

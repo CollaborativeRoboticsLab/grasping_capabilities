@@ -2,6 +2,8 @@
 
 Provides capabilities2 runners for manipulator motion and state queries. The package uses the grasping stack as the control boundary for Cartesian, named-pose, and joint-space execution, and reads state directly from TF and joint-state topics.
 
+It also exposes scene-manager capabilities for explicit workspace activation and scene metadata queries.
+
 ## Supported runners
 
 | Runner | Description |
@@ -9,9 +11,12 @@ Provides capabilities2 runners for manipulator motion and state queries. The pac
 | `MoveToCartesianPoseRunner` | Sends a Cartesian target through `grasping_msgs/action/MoveToPose`. |
 | `MoveToJointPoseRunner` | Sends a joint-space target through `grasping_msgs/action/MoveToJointPose`. |
 | `MoveToNamedPoseRunner` | Sends a configured named pose through `grasping_msgs/action/MoveToNamedPose`. |
+| `ActivateSceneRunner` | Activates an explicit workspace scene reference through `grasping_msgs/action/ActivateScene`. |
 | `ListNamedPosesRunner` | Lists configured named poses and their descriptions through `grasping_msgs/srv/ListNamedPoses`. |
 | `CurrentCartesianPoseRunner` | Reads the current link pose from TF and emits Cartesian and RPY values. |
 | `CurrentJointPoseRunner` | Reads the grasping-owned `/manipulator_joint_states` stream and emits `joint_names` plus `joint_positions` vectors. |
+| `GetActiveSceneRunner` | Reads the currently active scene metadata through `grasping_msgs/srv/GetActiveScene`. |
+| `GetAvailableScenesRunner` | Lists available scene descriptors through `grasping_msgs/srv/ListAvailableScenes`. |
 
 ## Planning Boundary
 

@@ -1,0 +1,62 @@
+%YAML 1.1
+---
+name: GetAvailableScenesRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for filtering available scene-registry entries for grasping workflows."
+implements: grasping_capabilities/GetAvailableScenesRunner
+runner: capabilities2_runner::GetAvailableScenesRunner
+
+definition:
+  command: "<Runner interface=grasping_capabilities/GetAvailableScenesRunner provider=grasping_capabilities/GetAvailableScenesRunner requested_mode='$requested_mode' required_tags='$required_tags' />"
+  configuration_parameters:
+    - name: requested_mode
+      type: string
+      optional: true
+      default: ""
+      semantic_key: grasping.scene.query.requested_mode
+      description: "Optional scene mode filter applied by the registry service."
+    - name: required_tags
+      type: string[]
+      optional: true
+      default: []
+      semantic_key: grasping.scene.query.required_tags
+      description: "Optional tags that must all match for a scene to be returned."
+  runtime_parameters:
+    output:
+      - name: message
+        type: string
+        semantic_key: grasping.scene.query.message
+        description: "Human-readable response returned by the scene-registry service."
+      - name: scene_names
+        type: string[]
+        semantic_key: grasping.scene.query.scene_names
+        description: "Ordered scene registry names matching the filter."
+      - name: package_names
+        type: string[]
+        semantic_key: grasping.scene.query.package_names
+        description: "Ordered package names matching scene_names."
+      - name: workspace_files
+        type: string[]
+        semantic_key: grasping.scene.query.workspace_files
+        description: "Ordered workspace document paths matching scene_names."
+      - name: scene_revisions
+        type: string[]
+        semantic_key: grasping.scene.query.scene_revisions
+        description: "Ordered scene revisions matching scene_names."
+      - name: station_frames
+        type: string[]
+        semantic_key: grasping.scene.query.station_frames
+        description: "Ordered station frames matching scene_names."
+      - name: selector_profiles
+        type: string[]
+        semantic_key: grasping.scene.query.selector_profiles
+        description: "Ordered selector profiles matching scene_names."
+      - name: descriptions
+        type: string[]
+        semantic_key: grasping.scene.query.descriptions
+        description: "Ordered descriptions matching scene_names."
+      - name: scene_count
+        type: int
+        semantic_key: grasping.scene.query.scene_count
+        description: "Number of available scenes returned by the registry service."

@@ -1,0 +1,12 @@
+%YAML 1.1
+---
+name: GetAvailableScenesRunner
+spec_version: 1.2
+spec_type: interface
+description: "This capability lists scene-registry entries available for grasping
+              activation through the mobile-manipulator scene service."
+interface:
+  services:
+    "/list_available_scenes":
+      type: "grasping_msgs::srv::ListAvailableScenes"
+      description: "Scene-registry service that filters available scene descriptors"

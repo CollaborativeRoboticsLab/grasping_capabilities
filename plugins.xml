@@ -1,4 +1,9 @@
 <library path="grasping_capabilities">
+    <class type="capabilities2_runner::ActivateSceneRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that activates an explicit workspace scene reference
+        </description>
+    </class>
     <class type="capabilities2_runner::CheckCartesianFeasibilityRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that checks manipulator Cartesian feasibility
@@ -37,6 +42,16 @@
     <class type="capabilities2_runner::CurrentJointPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that reads the current manipulator joint state
+        </description>
+    </class>
+    <class type="capabilities2_runner::GetActiveSceneRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that reads the currently active workspace scene metadata
+        </description>
+    </class>
+    <class type="capabilities2_runner::GetAvailableScenesRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that lists available workspace scene descriptors
         </description>
     </class>
 </library>

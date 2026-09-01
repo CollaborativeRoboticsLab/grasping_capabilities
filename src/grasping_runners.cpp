@@ -1,15 +1,19 @@
 #include <pluginlib/class_list_macros.hpp>
 
 #include <capabilities2_runner/runner_base.hpp>
+#include <grasping_capabilities/activate_scene_runner.hpp>
 #include <grasping_capabilities/check_cartesian_feasibility_runner.hpp>
 #include <grasping_capabilities/check_joint_feasibility_runner.hpp>
 #include <grasping_capabilities/current_cartesian_pose_runner.hpp>
 #include <grasping_capabilities/current_joint_pose_runner.hpp>
+#include <grasping_capabilities/get_active_scene_runner.hpp>
+#include <grasping_capabilities/get_available_scenes_runner.hpp>
 #include <grasping_capabilities/list_named_poses_runner.hpp>
 #include <grasping_capabilities/move_to_cartesian_pose_runner.hpp>
 #include <grasping_capabilities/move_to_joint_pose_runner.hpp>
 #include <grasping_capabilities/move_to_named_pose_runner.hpp>
 
+PLUGINLIB_EXPORT_CLASS(capabilities2_runner::ActivateSceneRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckCartesianFeasibilityRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckJointFeasibilityRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToCartesianPoseRunner, capabilities2_runner::RunnerBase)
@@ -18,3 +22,5 @@ PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToNamedPoseRunner, capabilities
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::ListNamedPosesRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CurrentCartesianPoseRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CurrentJointPoseRunner, capabilities2_runner::RunnerBase)
+PLUGINLIB_EXPORT_CLASS(capabilities2_runner::GetActiveSceneRunner, capabilities2_runner::RunnerBase)
+PLUGINLIB_EXPORT_CLASS(capabilities2_runner::GetAvailableScenesRunner, capabilities2_runner::RunnerBase)

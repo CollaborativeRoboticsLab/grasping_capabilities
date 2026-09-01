@@ -38,6 +38,14 @@
       interfaces/CheckCartesianFeasibilityRunner.yaml
     </capability_interface>
 
+    <capability_interface>
+      interfaces/ActivateSceneRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/ActivateSceneRunner.yaml
+    </capability_provider>
+
     <capability_provider>
       providers/CheckCartesianFeasibilityRunner.yaml
     </capability_provider>
@@ -96,6 +104,22 @@
 
     <capability_provider>
       providers/CurrentJointPoseRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/GetActiveSceneRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/GetActiveSceneRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
+      interfaces/GetAvailableScenesRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/GetAvailableScenesRunner.yaml
     </capability_provider>
 
   </export>

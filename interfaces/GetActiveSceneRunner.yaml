@@ -1,0 +1,12 @@
+%YAML 1.1
+---
+name: GetActiveSceneRunner
+spec_version: 1.2
+spec_type: interface
+description: "This capability reads the currently active grasping workspace scene
+              from the scene-manager service."
+interface:
+  services:
+    "/get_active_scene":
+      type: "grasping_msgs::srv::GetActiveScene"
+      description: "Scene-manager service that reports the currently active workspace scene"

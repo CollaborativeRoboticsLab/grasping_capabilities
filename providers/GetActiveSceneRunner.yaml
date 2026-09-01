@@ -1,0 +1,53 @@
+%YAML 1.1
+---
+name: GetActiveSceneRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for reading the current grasping workspace scene from the scene manager."
+implements: grasping_capabilities/GetActiveSceneRunner
+runner: capabilities2_runner::GetActiveSceneRunner
+
+definition:
+  command: "<Runner interface=grasping_capabilities/GetActiveSceneRunner provider=grasping_capabilities/GetActiveSceneRunner />"
+  runtime_parameters:
+    output:
+      - name: active
+        type: bool
+        semantic_key: grasping.active_scene.active
+        description: "Whether the scene manager currently has an active workspace scene."
+      - name: message
+        type: string
+        semantic_key: grasping.active_scene.message
+        description: "Human-readable response returned by the scene manager."
+      - name: active_scene_name
+        type: string
+        semantic_key: grasping.active_scene.name
+        description: "Scene registry name reported for the active scene."
+      - name: active_scene_package_name
+        type: string
+        semantic_key: grasping.active_scene.package_name
+        description: "Package name of the active workspace scene source."
+      - name: active_scene_workspace_file
+        type: string
+        semantic_key: grasping.active_scene.workspace_file
+        description: "Workspace document path of the active scene source."
+      - name: active_scene_revision
+        type: string
+        semantic_key: grasping.active_scene.scene_revision
+        description: "Scene revision reported for the active scene source."
+      - name: scene_handle
+        type: string
+        semantic_key: grasping.active_scene.handle
+        description: "Runtime scene handle of the active scene."
+      - name: workspace_base_frame
+        type: string
+        semantic_key: grasping.active_scene.base_frame
+        description: "Base frame used by the active workspace scene."
+      - name: workspace_area_enabled
+        type: bool
+        semantic_key: grasping.active_scene.workspace_area_enabled
+        description: "Whether workspace-area filtering is enabled for the active scene."
+      - name: object_names
+        type: string[]
+        semantic_key: grasping.active_scene.object_names
+        description: "Collision object names currently loaded in the active scene."

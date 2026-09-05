@@ -46,4 +46,11 @@ colcon build --packages-up-to grasping_msgs grasping_control grasping_capabiliti
 
 ## Runtime
 
-Start the capabilities server and the grasping motion server, then run one of the manipulation plans through your normal capabilities2 launch flow.
+Start the grasping motion server, then run one of the manipulation plans through the packaged wrapper launch.
+
+```bash
+source install/setup.bash
+ros2 launch grasping_capabilities system.launch.py filename:=manipulation_1.xml
+```
+
+The wrapper starts Fabric, Capabilities2, and prompt tools automatically. Add `start_prompt_tools:=false` when you want to exclude `prompt_bridge`, and `start_experience_stack:=true` when you also want Experience and Supervisor in the same launch graph.

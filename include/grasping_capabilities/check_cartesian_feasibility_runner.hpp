@@ -40,7 +40,11 @@ protected:
     request.pose.orientation.y = std::any_cast<double>(parameters.get_value("qy", 0.0));
     request.pose.orientation.z = std::any_cast<double>(parameters.get_value("qz", 0.0));
     request.pose.orientation.w = std::any_cast<double>(parameters.get_value("qw", 1.0));
-    request.frame_id = std::any_cast<std::string>(parameters.get_value("frame_id", std::string("base_link")));
+    request.planning_frame = std::any_cast<std::string>(
+      parameters.get_value(
+        "planning_frame",
+        std::any_cast<std::string>(parameters.get_value("frame_id", std::string("")))));
+    request.target_frame = std::any_cast<std::string>(parameters.get_value("target_frame", std::string("")));
     request.mode = std::any_cast<std::string>(parameters.get_value("mode", std::string("arm_only_plan")));
     return request;
   }

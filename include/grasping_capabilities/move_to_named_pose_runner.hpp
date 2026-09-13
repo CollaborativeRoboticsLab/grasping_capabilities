@@ -61,6 +61,11 @@ protected:
     return msg->state;
   }
 
+  std::string result_diagnostic() const override
+  {
+    return result_message_;
+  }
+
   /**
    * @brief Cache the action result message for later event emission.
    *

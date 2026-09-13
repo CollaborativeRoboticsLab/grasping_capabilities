@@ -46,15 +46,18 @@ protected:
   grasping_msgs::action::MoveToPose::Goal generate_goal(capabilities2_events::EventParameters & parameters) override
   {
     grasping_msgs::action::MoveToPose::Goal goal_msg;
-    goal_msg.target_pose.header.frame_id = std::any_cast<std::string>(
-      parameters.get_value("frame_id", std::string("base_link")));
-    goal_msg.target_pose.pose.position.x = std::any_cast<double>(parameters.get_value("x", 0.0));
-    goal_msg.target_pose.pose.position.y = std::any_cast<double>(parameters.get_value("y", 0.0));
-    goal_msg.target_pose.pose.position.z = std::any_cast<double>(parameters.get_value("z", 0.0));
-    goal_msg.target_pose.pose.orientation.x = std::any_cast<double>(parameters.get_value("qx", 0.0));
-    goal_msg.target_pose.pose.orientation.y = std::any_cast<double>(parameters.get_value("qy", 0.0));
-    goal_msg.target_pose.pose.orientation.z = std::any_cast<double>(parameters.get_value("qz", 0.0));
-    goal_msg.target_pose.pose.orientation.w = std::any_cast<double>(parameters.get_value("qw", 1.0));
+    goal_msg.planning_frame = std::any_cast<std::string>(
+      parameters.get_value(
+        "planning_frame",
+        std::any_cast<std::string>(parameters.get_value("frame_id", std::string("")))));
+    goal_msg.target_frame = std::any_cast<std::string>(parameters.get_value("target_frame", std::string("")));
+    goal_msg.pose.position.x = std::any_cast<double>(parameters.get_value("x", 0.0));
+    goal_msg.pose.position.y = std::any_cast<double>(parameters.get_value("y", 0.0));
+    goal_msg.pose.position.z = std::any_cast<double>(parameters.get_value("z", 0.0));
+    goal_msg.pose.orientation.x = std::any_cast<double>(parameters.get_value("qx", 0.0));
+    goal_msg.pose.orientation.y = std::any_cast<double>(parameters.get_value("qy", 0.0));
+    goal_msg.pose.orientation.z = std::any_cast<double>(parameters.get_value("qz", 0.0));
+    goal_msg.pose.orientation.w = std::any_cast<double>(parameters.get_value("qw", 1.0));
     return goal_msg;
   }
 
@@ -67,6 +70,11 @@ protected:
   std::string generate_feedback(const grasping_msgs::action::MoveToPose::Feedback::ConstSharedPtr msg) override
   {
     return msg->state;
+  }
+
+  std::string result_diagnostic() const override
+  {
+    return result_message_;
   }
 
   /**

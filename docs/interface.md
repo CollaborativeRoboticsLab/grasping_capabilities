@@ -40,7 +40,7 @@ Input Parameters:
 
 | Parameter Name | Type | Description |
 | --- | --- | --- |
-| frame_id | string | Frame of the requested target pose. Defaults to `base_link`. |
+| target_frame | string | The frame which reaches the given pose. This is not the planning frame. Defaults to `tcp`. |
 | x | double | Target position X. |
 | y | double | Target position Y. |
 | z | double | Target position Z. |

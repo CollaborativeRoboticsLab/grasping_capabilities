@@ -50,6 +50,15 @@ protected:
     return msg->stage + ": " + msg->message;
   }
 
+  std::string result_diagnostic() const override
+  {
+    if (!result_message_.empty())
+    {
+      return result_message_;
+    }
+    return failure_reason_;
+  }
+
   void process_result(grasping_msgs::action::ActivateScene::Result::SharedPtr result) override
   {
     result_success_ = result->success;

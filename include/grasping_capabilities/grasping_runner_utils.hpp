@@ -2,6 +2,8 @@
 
 #include <any>
 #include <chrono>
+#include <cctype>
+#include <sstream>
 #include <string>
 #include <vector>
 
@@ -15,6 +17,55 @@ namespace capabilities2_runner
 {
 namespace grasping_detail
 {
+inline std::string trim_copy(const std::string & value)
+{
+  size_t start = 0;
+  while (start < value.size() && std::isspace(static_cast<unsigned char>(value[start])))
+  {
+    ++start;
+  }
+
+  size_t end = value.size();
+  while (end > start && std::isspace(static_cast<unsigned char>(value[end - 1])))
+  {
+    --end;
+  }
+
+  return value.substr(start, end - start);
+}
+
+inline std::string strip_brackets(const std::string & value)
+{
+  std::string stripped = trim_copy(value);
+  if (stripped.size() >= 2 && stripped.front() == '[' && stripped.back() == ']')
+  {
+    stripped = stripped.substr(1, stripped.size() - 2);
+  }
+  return stripped;
+}
+
+inline std::vector<std::string> split_csv_like(const std::string & value)
+{
+  std::vector<std::string> items;
+  std::stringstream stream(strip_brackets(value));
+  std::string item;
+  while (std::getline(stream, item, ','))
+  {
+    item = trim_copy(item);
+    if (item.size() >= 2 &&
+      ((item.front() == '"' && item.back() == '"') || (item.front() == '\'' && item.back() == '\'')))
+    {
+      item = item.substr(1, item.size() - 2);
+    }
+
+    if (!item.empty())
+    {
+      items.push_back(item);
+    }
+  }
+  return items;
+}
+
 /**
  * @brief Convert a vector-valued parameter into a string list.
  *
@@ -26,6 +77,10 @@ inline std::vector<std::string> any_to_string_vector(const std::any & value)
   if (value.type() == typeid(std::vector<std::string>))
   {
     return std::any_cast<std::vector<std::string>>(value);
+  }
+  if (value.type() == typeid(std::string))
+  {
+    return split_csv_like(std::any_cast<std::string>(value));
   }
   throw runner_exception("expected a string vector parameter");
 }
@@ -41,6 +96,22 @@ inline std::vector<double> any_to_double_vector(const std::any & value)
   if (value.type() == typeid(std::vector<double>))
   {
     return std::any_cast<std::vector<double>>(value);
+  }
+  if (value.type() == typeid(std::string))
+  {
+    std::vector<double> parsed;
+    for (const auto & item : split_csv_like(std::any_cast<std::string>(value)))
+    {
+      try
+      {
+        parsed.push_back(std::stod(item));
+      }
+      catch (const std::exception &)
+      {
+        throw runner_exception("expected a double vector parameter");
+      }
+    }
+    return parsed;
   }
   throw runner_exception("expected a double vector parameter");
 }

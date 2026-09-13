@@ -8,7 +8,7 @@ implements: grasping_capabilities/CheckCartesianFeasibilityRunner
 runner: capabilities2_runner::CheckCartesianFeasibilityRunner
 
 definition:
-  command: "<Runner interface=grasping_capabilities/CheckCartesianFeasibilityRunner provider=grasping_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' frame_id='$frame_id' mode='$mode' />"
+  command: "<Runner interface=grasping_capabilities/CheckCartesianFeasibilityRunner provider=grasping_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' target_frame='$target_frame' mode='$mode' />"
   configuration_parameters:
     - name: x
       type: double
@@ -46,12 +46,12 @@ definition:
       default: 1.0
       semantic_key: grasping.feasibility.target_pose.qw
       description: "Target orientation quaternion w component."
-    - name: frame_id
+    - name: target_frame
       type: string
       optional: true
-      default: "base_link"
-      semantic_key: grasping.feasibility.target_pose.frame_id
-      description: "Frame in which the target pose is expressed."
+      default: "tcp"
+      semantic_key: grasping.feasibility.target_pose.target_frame
+      description: "The frame which reaches the given pose. This is not the planning frame."
     - name: mode
       type: string
       optional: true

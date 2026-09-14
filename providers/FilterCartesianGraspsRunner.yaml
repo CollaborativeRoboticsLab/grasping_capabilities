@@ -1,0 +1,78 @@
+%YAML 1.1
+---
+name: FilterCartesianGraspsRunner
+spec_type: provider
+spec_version: 1.2
+description: "The provider for filtering candidate grasp arrays against manipulator Cartesian feasibility."
+implements: grasping_capabilities/FilterCartesianGraspsRunner
+runner: capabilities2_runner::FilterCartesianGraspsRunner
+
+definition:
+  command: "<Runner interface=grasping_capabilities/FilterCartesianGraspsRunner provider=grasping_capabilities/FilterCartesianGraspsRunner target_frame='$target_frame' planning_frame='$planning_frame' mode='$mode' service_timeout_sec='$service_timeout_sec' />"
+  configuration_parameters:
+    - name: target_frame
+      type: string
+      optional: true
+      default: "tcp"
+      semantic_key: grasping.filter.target_frame
+      description: "The tool frame that must reach each candidate pose."
+    - name: planning_frame
+      type: string
+      optional: true
+      default: ""
+      semantic_key: grasping.filter.planning_frame
+      description: "Optional planning frame override. When omitted, each candidate frame_id is used."
+    - name: mode
+      type: string
+      optional: true
+      default: "arm_only_plan"
+      semantic_key: grasping.filter.mode
+      description: "Feasibility mode such as arm_only_ik or arm_only_plan."
+    - name: service_timeout_sec
+      type: double
+      optional: true
+      default: 10.0
+      semantic_key: grasping.filter.service_timeout_sec
+      description: "Timeout applied to each feasibility service request."
+  runtime_parameters:
+    output:
+      - name: pose_count
+        type: int
+        semantic_key: grasping.filter.pose_count
+        description: "Number of feasible poses remaining after filtering."
+      - name: frame_ids
+        type: string[]
+        semantic_key: grasping.filter.frame_ids
+        description: "Filtered pose frame identifiers."
+      - name: positions_x
+        type: double[]
+        semantic_key: grasping.filter.positions_x
+        description: "Filtered pose x positions."
+      - name: positions_y
+        type: double[]
+        semantic_key: grasping.filter.positions_y
+        description: "Filtered pose y positions."
+      - name: positions_z
+        type: double[]
+        semantic_key: grasping.filter.positions_z
+        description: "Filtered pose z positions."
+      - name: orientations_x
+        type: double[]
+        semantic_key: grasping.filter.orientations_x
+        description: "Filtered pose quaternion x components."
+      - name: orientations_y
+        type: double[]
+        semantic_key: grasping.filter.orientations_y
+        description: "Filtered pose quaternion y components."
+      - name: orientations_z
+        type: double[]
+        semantic_key: grasping.filter.orientations_z
+        description: "Filtered pose quaternion z components."
+      - name: orientations_w
+        type: double[]
+        semantic_key: grasping.filter.orientations_w
+        description: "Filtered pose quaternion w components."
+      - name: message
+        type: string
+        semantic_key: grasping.filter.message
+        description: "Summary of the filtering result."

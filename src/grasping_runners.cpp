@@ -6,6 +6,7 @@
 #include <grasping_capabilities/check_joint_feasibility_runner.hpp>
 #include <grasping_capabilities/current_cartesian_pose_runner.hpp>
 #include <grasping_capabilities/current_joint_pose_runner.hpp>
+#include <grasping_capabilities/filter_cartesian_grasps_runner.hpp>
 #include <grasping_capabilities/get_active_scene_runner.hpp>
 #include <grasping_capabilities/get_available_scenes_runner.hpp>
 #include <grasping_capabilities/list_named_poses_runner.hpp>
@@ -16,6 +17,7 @@
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::ActivateSceneRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckCartesianFeasibilityRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::CheckJointFeasibilityRunner, capabilities2_runner::RunnerBase)
+PLUGINLIB_EXPORT_CLASS(capabilities2_runner::FilterCartesianGraspsRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToCartesianPoseRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToJointPoseRunner, capabilities2_runner::RunnerBase)
 PLUGINLIB_EXPORT_CLASS(capabilities2_runner::MoveToNamedPoseRunner, capabilities2_runner::RunnerBase)

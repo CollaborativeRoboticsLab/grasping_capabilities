@@ -14,6 +14,11 @@
             A plugin that checks manipulator joint-space feasibility
         </description>
     </class>
+    <class type="capabilities2_runner::FilterCartesianGraspsRunner" base_class_type="capabilities2_runner::RunnerBase">
+        <description>
+            A plugin that filters grasp candidate arrays down to Cartesian-feasible poses
+        </description>
+    </class>
     <class type="capabilities2_runner::MoveToCartesianPoseRunner" base_class_type="capabilities2_runner::RunnerBase">
         <description>
             A plugin that moves the manipulator to a Cartesian target pose

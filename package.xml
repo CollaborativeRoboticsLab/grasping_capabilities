@@ -59,6 +59,14 @@
     </capability_provider>
 
     <capability_interface>
+      interfaces/FilterCartesianGraspsRunner.yaml
+    </capability_interface>
+
+    <capability_provider>
+      providers/FilterCartesianGraspsRunner.yaml
+    </capability_provider>
+
+    <capability_interface>
       interfaces/MoveToCartesianPoseRunner.yaml
     </capability_interface>
 

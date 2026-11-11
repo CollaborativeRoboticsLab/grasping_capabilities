@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for activating an explicit grasping workspace scene reference."
 implements: grasping_capabilities/ActivateSceneRunner
 runner: capabilities2_runner::ActivateSceneRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/ActivateSceneRunner provider=grasping_capabilities/ActivateSceneRunner scene_name='$scene_name' package_name='$package_name' workspace_file='$workspace_file' scene_revision='$scene_revision' force_reload='$force_reload' />"

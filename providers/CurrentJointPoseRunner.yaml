@@ -7,6 +7,9 @@ description: "The provider for reading the current manipulator joint positions f
               backend-owned planning joint-state topic."
 implements: grasping_capabilities/CurrentJointPoseRunner
 runner: capabilities2_runner::CurrentJointPoseRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/CurrentJointPoseRunner provider=grasping_capabilities/CurrentJointPoseRunner timeout_sec='$timeout_sec' />"

@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for reading the current grasping workspace scene from the scene manager."
 implements: grasping_capabilities/GetActiveSceneRunner
 runner: capabilities2_runner::GetActiveSceneRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/GetActiveSceneRunner provider=grasping_capabilities/GetActiveSceneRunner />"

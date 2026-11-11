@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for reading the current manipulator Cartesian pose from TF."
 implements: grasping_capabilities/CurrentCartesianPoseRunner
 runner: capabilities2_runner::CurrentCartesianPoseRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/CurrentCartesianPoseRunner provider=grasping_capabilities/CurrentCartesianPoseRunner from_frame='$from_frame' to_frame='$to_frame' time_buffer='$time_buffer' />"

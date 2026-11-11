@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for querying configured manipulator named poses and descriptions from grasping_control."
 implements: grasping_capabilities/ListNamedPosesRunner
 runner: capabilities2_runner::ListNamedPosesRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/ListNamedPosesRunner provider=grasping_capabilities/ListNamedPosesRunner />"

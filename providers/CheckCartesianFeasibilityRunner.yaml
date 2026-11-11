@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for manipulator Cartesian feasibility queries routed through grasping_control."
 implements: grasping_capabilities/CheckCartesianFeasibilityRunner
 runner: capabilities2_runner::CheckCartesianFeasibilityRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/CheckCartesianFeasibilityRunner provider=grasping_capabilities/CheckCartesianFeasibilityRunner x='$x' y='$y' z='$z' qx='$qx' qy='$qy' qz='$qz' qw='$qw' target_frame='$target_frame' mode='$mode' />"

@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for filtering available scene-registry entries for grasping workflows."
 implements: grasping_capabilities/GetAvailableScenesRunner
 runner: capabilities2_runner::GetAvailableScenesRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/GetAvailableScenesRunner provider=grasping_capabilities/GetAvailableScenesRunner requested_mode='$requested_mode' required_tags='$required_tags' />"

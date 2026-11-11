@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for manipulator joint feasibility queries routed through grasping_control."
 implements: grasping_capabilities/CheckJointFeasibilityRunner
 runner: capabilities2_runner::CheckJointFeasibilityRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/CheckJointFeasibilityRunner provider=grasping_capabilities/CheckJointFeasibilityRunner joint_names='$joint_names' joint_positions='$joint_positions' mode='$mode' />"

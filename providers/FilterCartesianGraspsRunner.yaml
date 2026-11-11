@@ -6,6 +6,9 @@ spec_version: 1.2
 description: "The provider for filtering candidate grasp arrays against manipulator Cartesian feasibility."
 implements: grasping_capabilities/FilterCartesianGraspsRunner
 runner: capabilities2_runner::FilterCartesianGraspsRunner
+depends_on:
+  "grasping_capabilities/GraspingLaunchRunner":
+    provider: "grasping_capabilities/GraspingLaunchRunner"
 
 definition:
   command: "<Runner interface=grasping_capabilities/FilterCartesianGraspsRunner provider=grasping_capabilities/FilterCartesianGraspsRunner target_frame='$target_frame' planning_frame='$planning_frame' mode='$mode' service_timeout_sec='$service_timeout_sec' />"

@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<Plan>
-    <Control type="sequential" name="single_named_pose_move">
-        <Runner
-            interface="grasping_capabilities/MoveToNamedPoseRunner"
-            provider="grasping_capabilities/MoveToNamedPoseRunner"
-            pose_name="workspace_center" />
-    </Control>
-</Plan>

@@ -1,0 +1,11 @@
+%YAML 1.1
+---
+name: GraspingLaunchRunner
+spec_type: interface
+spec_version: 1.2
+description: "Launches the generic grasping motion and scene-management stack. System-specific providers configure the stack and its startup dependencies."
+interface:
+  actions:
+    "/move_arm_to_pose":
+      type: "grasping_msgs::action::MoveToPose"
+      description: "Cartesian arm motion action used to confirm that the grasping stack is ready."

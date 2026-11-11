@@ -1,0 +1,19 @@
+%YAML 1.1
+---
+name: GraspingLaunchRunner
+spec_type: provider
+spec_version: 1.2
+description: "Launches the generic grasping motion execution stack without selecting a robot-specific configuration."
+implements: grasping_capabilities/GraspingLaunchRunner
+runner: grasping_control/motion_execution.launch.py
+definition:
+	launch_parameters:
+		- key: startup_activate_default_scene
+			value: "false"
+		- key: launch_feasiblity_service
+			value: "true"
+	launch_readiness:
+		action:
+			name: move_arm_to_pose
+			type: grasping_msgs/action/MoveToPose
+			timeout: 60.0

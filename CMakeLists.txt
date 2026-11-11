@@ -60,19 +60,7 @@ install(DIRECTORY include/
   DESTINATION include
 )
 
-install(DIRECTORY interfaces
-  DESTINATION share/${PROJECT_NAME}
-)
-
-install(DIRECTORY providers
-  DESTINATION share/${PROJECT_NAME}
-)
-
-install(DIRECTORY launch
-  DESTINATION share/${PROJECT_NAME}
-)
-
-install(DIRECTORY plans
+install(DIRECTORY interfaces providers
   DESTINATION share/${PROJECT_NAME}
 )
 

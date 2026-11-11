@@ -1,56 +1,13 @@
 # grasping_capabilities
 
-Provides capabilities2 runners for manipulator motion and state queries. The package uses the grasping stack as the control boundary for Cartesian, named-pose, and joint-space execution, and reads state directly from TF and joint-state topics.
+Provides reusable Capabilities2 runners and generic interfaces for grasping-stack motion, feasibility, pose state, and scene operations. Robot-specific plans, motion configuration, and application launch files belong in a system package such as `omron_moma_grasping_capabilities`.
 
-It also exposes scene-manager capabilities for explicit workspace activation and scene metadata queries.
+`GraspingLaunchRunner` is the generic launch capability for `grasping_control/motion_execution.launch.py`. Applications can provide a specialized provider for that interface to select robot-specific motion settings and startup dependencies.
 
-## Supported runners
-
-| Runner | Description |
-| --- | --- |
-| `MoveToCartesianPoseRunner` | Sends a Cartesian target through `grasping_msgs/action/MoveToPose`. |
-| `MoveToJointPoseRunner` | Sends a joint-space target through `grasping_msgs/action/MoveToJointPose`. |
-| `MoveToNamedPoseRunner` | Sends a configured named pose through `grasping_msgs/action/MoveToNamedPose`. |
-| `ActivateSceneRunner` | Activates an explicit workspace scene reference through `grasping_msgs/action/ActivateScene`. |
-| `ListNamedPosesRunner` | Lists configured named poses and their descriptions through `grasping_msgs/srv/ListNamedPoses`. |
-| `CurrentCartesianPoseRunner` | Reads the current link pose from TF and emits Cartesian and RPY values. |
-| `CurrentJointPoseRunner` | Reads the grasping-owned `/manipulator_joint_states` stream and emits `joint_names` plus `joint_positions` vectors. |
-| `GetActiveSceneRunner` | Reads the currently active scene metadata through `grasping_msgs/srv/GetActiveScene`. |
-| `GetAvailableScenesRunner` | Lists available scene descriptors through `grasping_msgs/srv/ListAvailableScenes`. |
-
-## Planning Boundary
-
-Motion execution is delegated to `grasping_control/motion_execution_node`, which owns:
-
-- workspace loading into the MoveIt planning scene
-- planner and tolerance configuration from `motion_config.yaml`
-- TF normalization and nearby-IK behavior for pose requests
-
-Because of that, `MoveToJointPoseRunner` now sends only the target joint state. Planning configuration is loaded on the grasping side rather than per capability trigger.
-
-Named-pose discovery is also delegated to `grasping_control/motion_execution_node`, which reads the configured `poses_names` and each pose's `description` field from `motion_config.yaml`.
-
-## Example Plans
-
-- `plans/manipulation_1.xml`: one Cartesian move
-- `plans/manipulation_2.xml`: one joint-space move
-- `plans/manipulation_3.xml`: one named-pose move
-- `plans/manipulation_4.xml`: four sequential named-pose moves
+This package does not install plans, robot configuration, or a Fabric system launch wrapper.
 
 ## Build
 
 ```bash
-cd ~/colcon_ws
-colcon build --packages-up-to grasping_msgs grasping_control grasping_capabilities --symlink-install
+colcon build --packages-up-to grasping_capabilities --symlink-install
 ```
-
-## Runtime
-
-Start the grasping motion server, then run one of the manipulation plans through the packaged wrapper launch.
-
-```bash
-source install/setup.bash
-ros2 launch grasping_capabilities system.launch.py filename:=manipulation_1.xml
-```
-
-The wrapper starts Fabric, Capabilities2, and prompt tools automatically. Add `start_prompt_tools:=false` when you want to exclude `prompt_bridge`, and `start_experience_stack:=true` when you also want Experience and Supervisor in the same launch graph.
